@@ -19,7 +19,7 @@ const Admin = () => {
     e.preventDefault();
     const success = login(username, password);
     if (!success) {
-      setLoginError('Invalid credentials. Use admin / 1234');
+      setLoginError('admin , 1234');
     } else {
       setLoginError('');
       setUsername('');
@@ -101,7 +101,7 @@ const Admin = () => {
           </form>
 
           <p className="text-gray-400 text-center mt-6 text-sm">
-            Demo credentials: admin / 1234
+            default admin:admin  parol:1234
           </p>
         </div>
       </div>
@@ -218,7 +218,7 @@ const Admin = () => {
 
         {/* Movies List */}
         <div>
-          <h2 className="text-2xl font-bold mb-6">Movies in Database ({movies.length})</h2>
+          <h2 className="text-2xl font-bold mb-6">Jami kinolar soni: {movies.length}</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {movies.map((movie) => (
               <div

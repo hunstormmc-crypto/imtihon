@@ -10,17 +10,17 @@ const Carousel = () => {
     {
       image: img1,
       title: "Avatar:Olov va kul",
-      description: "Birinchi film haqida qisqacha qiziqarli ma'lumot bu yerda bo'ladi.",
+      description: "Dramatik va qiziqarli voqealar",
     },
     {
       image: img2,
-      title: "Film 2",
-      description: "Ikkinchi film haqida batafsil ma'lumot. Dramatik va qiziqarli voqealar.",
+      title: "Capitan america:Yangi dunyo",
+      description: " Dramatik va qiziqarli voqealar.",
     },
     {
       image: img3,
-      title: "Film 3",
-      description: "Uchinchi film haqida. Yangi sarguzashtlar sizni kutmoqda.",
+      title: "Minecraft:Offical movie",
+      description: " Yangi sarguzashtlar sizni kutmoqda.",
     },
   ];
 
@@ -62,7 +62,7 @@ const Carousel = () => {
       <div className="absolute inset-0 flex flex-col justify-center px-6 md:px-16 text-white z-10">
         <div className="max-w-2xl animate-fadeIn">
           <p className="text-xs md:text-sm tracking-[0.4em] uppercase text-gray-400 font-bold mb-2">
-            KinoUz Premier 🎬
+            KinoUz premier 
           </p>
 
           <h2 className="text-4xl md:text-7xl font-black mb-4 leading-tight">

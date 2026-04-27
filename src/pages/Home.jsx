@@ -16,7 +16,7 @@ const Home = () => {
       <section className="mx-auto max-w-screen-2xl px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
           <div>
-            <p className="text-sm uppercase tracking-[0.35em] text-slate-400">🎥 Yangi filmlar</p>
+            <p className="text-sm uppercase tracking-[0.35em] text-slate-400"> Yangi filmlar</p>
             <h2 className="mt-3 text-3xl font-black text-white sm:text-4xl">Kinolar</h2>
           </div>
           <Link to="/all-movies" className="inline-flex items-center justify-center rounded-full bg-emerald-500 px-5 py-3 text-sm font-semibold text-black transition hover:bg-emerald-400">
