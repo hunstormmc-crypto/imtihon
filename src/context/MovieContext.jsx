@@ -6,6 +6,9 @@ export const MovieContext = createContext();
 export const MovieProvider = ({ children }) => {
   const [movies, setMovies] = useState([]);
   const [isAdmin, setIsAdmin] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+  const [searchTerm, setSearchTerm] = useState('');
+  const [language, setLanguage] = useState('uz');
 
   // Load movies from localStorage on mount
   useEffect(() => {
@@ -19,6 +22,7 @@ export const MovieProvider = ({ children }) => {
       setMovies(initialMovies);
       localStorage.setItem('movies', JSON.stringify(initialMovies));
     }
+    setIsLoading(false);
   }, []);
 
   // Save movies to localStorage whenever they change
@@ -63,8 +67,13 @@ export const MovieProvider = ({ children }) => {
       deleteMovie,
       getMovieById,
       isAdmin,
+      isLoading,
       login,
-      logout
+      logout,
+      searchTerm,
+      setSearchTerm,
+      language,
+      setLanguage
     }}>
       {children}
     </MovieContext.Provider>

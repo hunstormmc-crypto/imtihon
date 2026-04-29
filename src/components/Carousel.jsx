@@ -39,7 +39,7 @@ const Carousel = () => {
 
   return (
     // Konteyner balandligini h-screen qildik, lekin overflow-hidden bilan rasmni jilovladik
-    <div className="relative w-full h-[600px] md:h-[80vh] lg:h-screen overflow-hidden bg-black">
+    <div id="carousel" className="relative w-full h-[600px] md:h-[80vh] lg:h-screen overflow-hidden bg-black">
       
       {/* IMAGE LAYER */}
       <div className="absolute inset-0 w-full h-full">
@@ -59,28 +59,23 @@ const Carousel = () => {
       <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent" />
 
       {/* TEXT CONTENT */}
-      <div className="absolute inset-0 flex flex-col justify-center px-6 md:px-16 text-white z-10">
-        <div className="max-w-2xl animate-fadeIn">
+      <div className="absolute inset-0 flex flex-col justify-end pb-16 px-6 md:px-16 text-white z-10">
+        <div className="max-w-2xl">
           <p className="text-xs md:text-sm tracking-[0.4em] uppercase text-gray-400 font-bold mb-2">
             KinoUz premier 
           </p>
 
-          <h2 className="text-4xl md:text-7xl font-black mb-4 leading-tight">
+          <h2 className="text-2xl md:text-4xl font-black mb-4 leading-tight">
             {slide.title}
           </h2>
 
-          <p className="text-gray-300 text-sm md:text-lg mb-8 line-clamp-3">
+          <p className="text-xs md:text-sm mb-8 line-clamp-3">
             {slide.description}
           </p>
 
           <div className="flex items-center gap-4">
-            <button className="px-8 py-3 bg-green-600 hover:bg-green-700 text-white rounded-lg font-bold transition-all transform hover:scale-105 active:scale-95">
+            <button className="px-6 py-2 bg-green-600 hover:bg-green-700 text-white rounded-lg font-bold transition-all transform hover:scale-105 active:scale-95 text-sm">
               Tomosha qilish
-            </button>
-            <button className="p-3 bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/10 rounded-lg transition">
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
-              </svg>
             </button>
           </div>
         </div>
