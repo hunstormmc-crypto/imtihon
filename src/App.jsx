@@ -7,6 +7,8 @@ import Home from './pages/Home';
 import MovieDetail from './pages/MovieDetail';
 import AllMovies from './pages/AllMovies';
 import Admin from './pages/Admin';
+import Login from './pages/Login';
+import Register from './pages/Register';
 import NotFound from './pages/NotFound';
 
 function App() {
@@ -19,6 +21,8 @@ function App() {
           <Route path="/all-movies" element={<AllMovies />} />
           <Route path="/movie/:id" element={<MovieDetail />} />
           <Route path="/admin" element={<Admin />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
         <Footer />
