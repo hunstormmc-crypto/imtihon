@@ -6,9 +6,20 @@ export const MovieContext = createContext();
 export const MovieProvider = ({ children }) => {
   const [movies, setMovies] = useState([]);
   const [isAdmin, setIsAdmin] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [currentUser, setCurrentUser] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState('');
   const [language, setLanguage] = useState('uz');
+
+  // Load user session from localStorage on mount
+  useEffect(() => {
+    const savedUser = localStorage.getItem('currentUser');
+    if (savedUser) {
+      setCurrentUser(JSON.parse(savedUser));
+      setIsLoggedIn(true);
+    }
+  }, []);
 
   // Load movies from localStorage on mount
   useEffect(() => {
@@ -56,8 +67,40 @@ export const MovieProvider = ({ children }) => {
     return false;
   };
 
+  const userLogin = (email, password) => {
+    const users = JSON.parse(localStorage.getItem('users') || '[]');
+    const user = users.find(u => u.email === email && u.password === password);
+    if (user) {
+      setCurrentUser(user);
+      setIsLoggedIn(true);
+      localStorage.setItem('currentUser', JSON.stringify(user));
+      return { success: true };
+    }
+    return { success: false, message: 'Email yoki parol noto\'g\'ri' };
+  };
+
+  const userRegister = (name, email, password) => {
+    const users = JSON.parse(localStorage.getItem('users') || '[]');
+    if (users.find(u => u.email === email)) {
+      return { success: false, message: 'Bu email allaqachon ro\'yxatdan o\'tgan' };
+    }
+    const newUser = { id: Date.now(), name, email, password };
+    users.push(newUser);
+    localStorage.setItem('users', JSON.stringify(users));
+    setCurrentUser(newUser);
+    setIsLoggedIn(true);
+    localStorage.setItem('currentUser', JSON.stringify(newUser));
+    return { success: true };
+  };
+
   const logout = () => {
     setIsAdmin(false);
+  };
+
+  const userLogout = () => {
+    setCurrentUser(null);
+    setIsLoggedIn(false);
+    localStorage.removeItem('currentUser');
   };
 
   return (
@@ -67,9 +110,14 @@ export const MovieProvider = ({ children }) => {
       deleteMovie,
       getMovieById,
       isAdmin,
+      isLoggedIn,
+      currentUser,
       isLoading,
       login,
       logout,
+      userLogin,
+      userRegister,
+      userLogout,
       searchTerm,
       setSearchTerm,
       language,

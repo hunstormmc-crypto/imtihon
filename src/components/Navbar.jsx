@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
-import { FiSearch, FiSettings, FiBell, FiGlobe, FiLock } from 'react-icons/fi';
+import { FiSearch, FiSettings, FiBell, FiGlobe, FiLock, FiUser, FiLogOut } from 'react-icons/fi';
 import { MovieContext } from '../context/MovieContext';
 
 const Navbar = () => {
@@ -15,23 +15,32 @@ const Navbar = () => {
   const [showSearch, setShowSearch] = useState(false);
   const [showLanguageDropdown, setShowLanguageDropdown] = useState(false);
 
-  const { searchTerm, setSearchTerm, language, setLanguage } = useContext(MovieContext);
+  const { searchTerm, setSearchTerm, language, setLanguage, isLoggedIn, currentUser, userLogout } = useContext(MovieContext);
 
   const translations = {
     uz: {
       home: 'Bosh sahifa',
       admin: 'Admin',
       searchPlaceholder: 'Kino nomini kiriting...',
+      login: 'Kirish',
+      register: 'Ro\'yxatdan o\'tish',
+      logout: 'Chiqish',
     },
     en: {
       home: 'Home',
       admin: 'Admin',
       searchPlaceholder: 'Enter movie name...',
+      login: 'Login',
+      register: 'Register',
+      logout: 'Logout',
     },
     ru: {
       home: 'Главная',
       admin: 'Админ',
       searchPlaceholder: 'Введите название фильма...',
+      login: 'Войти',
+      register: 'Регистрация',
+      logout: 'Выйти',
     }
   };
 
@@ -294,15 +303,34 @@ const Navbar = () => {
               </div>
             )}
           </div>
-          <Link 
-            to="/admin" 
-            style={hoverLock ? hoverIconStyle : iconStyle} 
-            title="Login"
-            onMouseEnter={() => setHoverLock(true)}
-            onMouseLeave={() => setHoverLock(false)}
-          >
-            <FiLock />
-          </Link>
+          {isLoggedIn ? (
+            <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+              <span style={{ color: '#10b981', fontSize: '0.85rem', fontWeight: 500 }}>
+                {currentUser?.name}
+              </span>
+              <span
+                style={hoverLock ? hoverIconStyle : iconStyle}
+                title={t.logout}
+                onClick={userLogout}
+                onMouseEnter={() => setHoverLock(true)}
+                onMouseLeave={() => setHoverLock(false)}
+              >
+                <FiLogOut />
+              </span>
+            </div>
+          ) : (
+            <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+              <Link
+                to="/login"
+                style={hoverLock ? hoverIconStyle : iconStyle}
+                title={t.login}
+                onMouseEnter={() => setHoverLock(true)}
+                onMouseLeave={() => setHoverLock(false)}
+              >
+                <FiUser />
+              </Link>
+            </div>
+          )}
         </div>
       </div>
     </nav>
